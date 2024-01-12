@@ -4,9 +4,9 @@ This is a web application created for UF to organize/consolidate the senior proj
 # Contributors
 The Brogrammers:
  -
- Dylan Moore
- -
- Zachary Lannon
+  - Dylan Moore
+  - Zachary Lannon
 
 Advisor:
- -Senathia Thomas
+ -
+ - Senathia Thomas
