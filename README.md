@@ -5,5 +5,5 @@ This is a web application created for UF to organize/consolidate the senior proj
   - Dylan Moore
   - Zachary Lannon
 
-Project Advisor:
+# Project Advisor:
  - Senathia Thomas
