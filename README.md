@@ -1,12 +1,9 @@
 # Senior-Project-Webpage
 This is a web application created for UF to organize/consolidate the senior project process.
 
-# Contributors
-The Brogrammers:
- -
+# The Brogrammers:
   - Dylan Moore
   - Zachary Lannon
 
-Advisor:
- -
+Project Advisor:
  - Senathia Thomas
