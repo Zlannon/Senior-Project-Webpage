@@ -5,6 +5,7 @@ import "./navbar.css"
 
 const logo = require('../images/uflogo.png')
 const logo2 = require('../images/account.png')
+const logo3 = require('../images/announcement.png')
 
 
 const Navbar = () => {
@@ -28,7 +29,8 @@ const Navbar = () => {
             <span className="logo">
                 <Link to="/"><img src={logo} alt="" /></Link>
             </span>
-                <span className="account">
+            <span className="account">
+                <Link to="/announcement"><img src={logo3} alt=""/></Link>
                 <Link to="/account"><img src={logo2} alt="" /></Link>
             </span>
 

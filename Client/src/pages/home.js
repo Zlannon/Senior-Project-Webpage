@@ -5,9 +5,23 @@ import Dropdown from './dropdown';
 
 
 function Home() {
+    const [database, setDatabase] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
     const formOverlayRef = useRef(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get("https://hcd-e14b67ea1cbd.herokuapp.com/searchSaved");
+                setDatabase(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
+    }, []);
 
     const openForm = (cardData) => {
         setSelectedCard(cardData);
