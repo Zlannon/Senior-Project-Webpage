@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const db = new sqlite3.Database('projects.db')
+const db = new sqlite3.Database('showcase.db')
 
 app.get("/search", (req, res) => {
 
