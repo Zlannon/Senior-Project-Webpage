@@ -1,0 +1,33 @@
+.review-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.review-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+    .review-box h2 {
+        margin-bottom: 10px;
+    }
+
+    .review-box ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .review-box li {
+        padding: 5px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .review-box li:last-child {
+            border-bottom: none;
+        }

@@ -38,7 +38,7 @@ main {
 }
 
 .card-content {
-    padding: 16px;
+    padding: 10px;
 }
 
 .card-title {
@@ -63,12 +63,118 @@ main {
     z-index: 1000;
 }
 
+    .form-overlay button {
+        background-color: #3254a8;
+        width: 10%;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .form-overlay button:hover {
+            background-color: orange;
+        }
+
 .form {
+    width: 1110px;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-height: 80vh;
+    overflow-y: auto;
 }
+
+.form h2,
+.form p {
+    margin-bottom: 10px;
+}
+
+.form-edit-mode {
+    display: flex;
+    flex-direction: column;
+}
+
+    .form-edit-mode button {
+        background-color: #3254a8;
+        color: white;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .form-edit-mode button:hover {
+            background-color: orange;
+        }
+
+.form-input {
+    margin-bottom: 20px;
+}
+
+.form-input h3 {
+    margin-bottom: 5px;
+}
+
+.form-input input,
+.form-input textarea {
+    width: 95%;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.form-input textarea {
+    height: 150px;
+}
+
+
+
+.description-image-container {
+    display: flex;
+    align-items: center;
+}
+
+.description-container {
+    max-width: 500px;
+    word-wrap: break-word;
+
+}
+
+.card-image-2 {
+    width: 500px;
+    height: auto;
+    margin-left: 20px;
+    align-self: right;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.video {
+    margin-bottom: 20px;
+    margin-right: 15px;
+}
+
+.video h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.video iframe {
+    width: 350px;
+    height: 200px;
+}
+
 
 .close-btn {
     position: absolute;
@@ -97,3 +203,94 @@ select {
         outline: none;
         box-shadow: 0 0 5px rgba(50, 84, 168, 0.8);
     }
+
+
+button {
+    display: block;
+    width: 15%;
+    padding: 5px;
+    background-color: #3254a8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    button:hover {
+        background-color: black;
+    }
+
+.comments-section {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px; 
+}
+
+.comment-item {
+    background-color: #f9f9f9; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); 
+}
+
+    .comment-item strong {
+        font-weight: bold; 
+    }
+
+    .comment-item p {
+        margin: 0; 
+    }
+
+    .comment-item textarea {
+        width: 100%;
+    }
+
+.add-comment {
+    padding-top: 10px;
+}
+
+    .add-comment textarea {
+        width: 98%;
+        min-height: 50px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+    .add-comment button {
+        background-color: #3254a8;
+        color: #fff;
+        width: 100%;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .add-comment button:hover {
+            background-color: orange;
+        }
+
+.comment-actions {
+    padding-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+    .comment-actions button {
+        background-color: #3254a8;
+        color: white;
+        border: none;
+        width: 100%;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+        .comment-actions button:hover {
+            background-color: orange;
+        }
