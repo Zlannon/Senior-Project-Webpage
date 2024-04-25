@@ -1,19 +1,21 @@
+//imports
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './login.css';
 
 const Login = () => {
+    //vars
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [users, setUsers] = useState([]);
 
-
+    //get users
     useEffect(() => {
         GetUsers();
     }, []);
 
+    //get users from db
     const GetUsers = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchUser");
@@ -23,6 +25,7 @@ const Login = () => {
         }
     };
 
+    //check login info against db or admin
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (username.toLowerCase() === 'admin' && password === 'password') {
@@ -43,6 +46,7 @@ const Login = () => {
     };
 
 
+    //render content to webpage
     return (
         <div className="login-container">
             <h2>Login</h2>

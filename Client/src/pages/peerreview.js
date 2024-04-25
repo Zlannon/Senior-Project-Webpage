@@ -1,25 +1,31 @@
+//imports
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './review.css';
 
 const Review = () => {
+    //vars
     const [semester, setSemester] = useState('');
     const [peerReviewData, setPeerReviewData] = useState({
-        review1: ["Team Alpha", "Team Beta"],
-        review2: ["Team Gamma", "Team Delta"],
-        review3: ["Team Epsilon", "Team Zeta"],
+        review1: ["tmp", "tmp"],
+        review2: ["tmp", "tmp"],
+        review3: ["tmp", "tmp"],
     });
 
+    //get logged in user
     let user = localStorage.getItem("username");
 
+    //get current semester
     useEffect(() => {
         getSemester();
     }, []);
 
+    //get peer review data
     useEffect(() => {
         getReview();
     }, [semester]);
 
+    //get current semester from db
     const getSemester = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchSemester");
@@ -30,6 +36,7 @@ const Review = () => {
         }
     };
 
+    //get peer reviews from db
     const getReview = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchReview");
@@ -67,6 +74,8 @@ const Review = () => {
         }
     };
 
+
+    //render content to webpage
     return (
         <div className="review-container">
             <div className="review-box">

@@ -1,9 +1,11 @@
+//imports
 import React, { useState, useRef, useEffect } from 'react';
 import './home.css';
 import Dropdown from './dropdown';
 import axios from 'axios';
 
 function Home() {
+    //vars
     const [dropdownOptions, setDropdown] = useState([]);
     const [semester, setSemester] = useState('');
     const [ratings, setRatings] = useState({});
@@ -25,23 +27,27 @@ function Home() {
     const [editedComment, setEditedComment] = useState('');
     const formOverlayRef = useRef(null);
 
-
+    //get current semester
     useEffect(() => {
         getSemester();
     }, []);
 
+    //get ratings and comments
     useEffect(() => {
         GetRating();
         GetComment();
     }, [semester]);
 
+    //get project info
     useEffect(() => {
         GetData();
     }, [semester, ratings]);
 
+    //get logged in user/team
     let user = localStorage.getItem("username");
     let team = localStorage.getItem("team");
 
+    //get current semester from db
     const getSemester = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchSemester");
@@ -59,6 +65,7 @@ function Home() {
         }
     };
 
+    //get projects from db
     const GetData = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchProj", {
@@ -78,6 +85,7 @@ function Home() {
         }
     };
 
+    //get ratings from db
     const GetRating = async () => {
         try {
             const username = localStorage.getItem("username");
@@ -115,7 +123,7 @@ function Home() {
         }
     };
 
-
+    //get comments from db
     const GetComment = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchComm", {
@@ -130,6 +138,7 @@ function Home() {
         }
     };
 
+    //open form overlay and set data
     const openForm = (cardData) => {
         setSelectedCard(cardData);
         setShowForm(true);
@@ -147,12 +156,13 @@ function Home() {
         setCardsData(sortedCardsData);
     };
 
-
+    //close form overlay
     const closeForm = () => {
         setSelectedCard(null);
         setShowForm(false);
     };
 
+    //close form overlay if clicked outside
     const handleOutsideClick = (event) => {
         if (
             formOverlayRef.current &&
@@ -163,6 +173,7 @@ function Home() {
         }
     };
 
+    //allow scrolling on forms
     useEffect(() => {
         const handleMouseDown = () => {
             document.addEventListener('mouseup', handleOutsideClick);
@@ -176,14 +187,17 @@ function Home() {
         };
     }, []);
 
+    //update project info based on dropdown option
     const handleDropdownChange = (selectedOption) => {
         setSemester(selectedOption);
     };
 
+    //update form to edit mode
     const handleEditClick = () => {
         setEditMode(true);
     };
 
+    //save data from the form edit
     const handleSaveClick = async () => {
         try {
             updateProjectInDatabase();
@@ -198,6 +212,7 @@ function Home() {
         }
     };
 
+    //update the project info in the database
     const updateProjectInDatabase = async () => {
         try {
             await axios.post("http://localhost:3001/updateProj", {
@@ -218,6 +233,7 @@ function Home() {
         }
     };
 
+    //delete comment from database
     const deleteCommentInDatabase = async (commentUser, commentComm, commentTeam) => {
         try {
             await axios.post("http://localhost:3001/removeComm", {
@@ -233,6 +249,7 @@ function Home() {
         }
     };
 
+    //handle delete button being clicked
     const handleCommentDelete = async (commentUser, commentComm, commentTeam) => {
         try {
 
@@ -249,6 +266,7 @@ function Home() {
         }
     };
 
+    //add comment to database
     const addCommentInDatabase = async () => {
         try {
             await axios.post("http://localhost:3001/insertComm", {
@@ -264,6 +282,7 @@ function Home() {
         }
     };
 
+    //handle add comment button being pressed
     const handleCommentSubmit = async () => {
         try {
             if (newComment.trim() === '') {
@@ -278,12 +297,13 @@ function Home() {
         }
     };
 
+    //handle edit button being pressed
     const handleCommentEdit = (commentUser, commentContent, commentTeam) => {
         setCommentEditMode({ user: commentUser, content: commentContent, team: commentTeam });
         setEditedComment(commentContent);
     };
 
-
+    //edit comment in the database
     const editCommentInDatabase = async (commentUser, commentOld, commentEdit, commentTeam) => {
         try {
             await axios.post("http://localhost:3001/updateComm", {
@@ -300,6 +320,7 @@ function Home() {
         }
     };
 
+    //handle the save button being pressed on comment
     const handleCommentSave = async () => {
         try {
             const { user, content, team } = commentEditMode;
@@ -319,10 +340,12 @@ function Home() {
         }
     };
 
+    //handle comment cancel button being pressed
     const handleCommentCancel = () => {
         setCommentEditMode(null);
     };
 
+    //remove like from database
     const removeLikeInDatabase = async () => {
         try {
             await axios.post("http://localhost:3001/deleteRate", {
@@ -337,6 +360,7 @@ function Home() {
         }
     };
 
+    //add like to database
     const addLikeInDatabase = async () => {
         try {
             await axios.post("http://localhost:3001/insertRate", {
@@ -351,6 +375,7 @@ function Home() {
         }
     };
 
+    //handle like button being pressed
     const handleLike = () => {
 
         addLikeInDatabase();
@@ -366,6 +391,7 @@ function Home() {
         }));
     }
 
+    //handle remove like button being pressed
     const handleRemoveLike = () => {
 
         removeLikeInDatabase();
@@ -381,10 +407,12 @@ function Home() {
         }));
     }
 
+    //render content to webpage
     return (
         <div>
             <Dropdown options={dropdownOptions} onSelect={handleDropdownChange} />
             <main>
+                {/*Conditional render message if no projects found otherwise render project cards*/}
                 {cardsData.length === 0 ? (
                     <div className="no-projects-message">
                         There are no projects for this semester. Please wait for an admin to add new projects or view archived projects through the dropdown menu.
@@ -400,7 +428,7 @@ function Home() {
                         </div>
                     ))
                 )}
-
+                {/*Display form overlay*/}
                 {showForm && selectedCard && (
                     <div className="form-overlay" ref={formOverlayRef}>
                         <div className="form">

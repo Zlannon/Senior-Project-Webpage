@@ -1,11 +1,13 @@
+//imports
 import React, { useState } from 'react';
 import axios from 'axios';
 import './archive.css';
 
 const Archive = () => {
+    //vars
     const [semesterName, setSemesterName] = useState('');
-    const [statusMessage, setStatusMessage] = useState('');
 
+    //create new tables and archive previous projects
     const archiveInDatabase = async () => {
         try {
             const formattedSemesterName = semesterName.replace(/ /g, '_') + '_';
@@ -16,10 +18,10 @@ const Archive = () => {
                 }
             });
         } catch (err) {
-            setStatusMessage('Error inserting semester.');
         }
     };
 
+    //archive after submit is pressed
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -27,6 +29,7 @@ const Archive = () => {
         window.location.href = '/account';
     };
 
+    //render form to webpage
     return (
         <div className="archive-page">
             <h2 className="archive-header">Create New Semester</h2>

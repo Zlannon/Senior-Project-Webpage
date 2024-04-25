@@ -1,5 +1,6 @@
 import React from 'react';
 
+//render dropdown for different semesters
 const Dropdown = ({ options, onSelect }) => {
     return (
         <div className="dropdown">

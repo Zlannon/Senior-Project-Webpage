@@ -1,3 +1,4 @@
+//imports
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './home';
@@ -8,10 +9,11 @@ import Announcement from './announcement';
 import CreateAnnouncement from './createannouncement';
 import Archive from './archive';
 import Review from './peerreview';
-import CreateReview from './createpeerreview';
+import AddTeam from './addteam';
 
 function Router() {
 
+    //route pages to classes for proper rendering
     let body = (
         <BrowserRouter>
             <Navbar />
@@ -23,6 +25,7 @@ function Router() {
                 <Route path="/createannouncement" element={<CreateAnnouncement />} />
                 <Route path="/archiveprojects" element={<Archive />} />
                 <Route path="/peerreview" element={<Review />} />
+                <Route path="/addteam" element={<AddTeam/>} />
             </Routes>
         </BrowserRouter>
     )

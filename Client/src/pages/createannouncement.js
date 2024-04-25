@@ -1,26 +1,32 @@
+//imports
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './createannouncement.css';
 
 const CreateAnnouncement = () => {
+    //vars
     const [semester, setSemester] = useState('');
     const [title, setTitle,] = useState('');
     const [content, setContent] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
+    //set title from form
     const handleTitleChange = (e) => {
         setTitle(e.target.value);
     };
 
+    //set content from form
     const handleContentChange = (e) => {
         setContent(e.target.value);
     };
 
+    //get the current semester
     useEffect(() => {
         getSemester();
     }, []);
 
+    //get the current semester from db
     const getSemester = async () => {
         try {
             const response = await axios.get("http://localhost:3001/searchSemester");
@@ -31,6 +37,8 @@ const CreateAnnouncement = () => {
         }
     };
 
+
+    //post new announcement to db
     const createAnnouncementInDatabase = async () => {
         try {
 
@@ -65,6 +73,7 @@ const CreateAnnouncement = () => {
         }
     };
 
+    //handle submit button being pressed
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
@@ -75,8 +84,8 @@ const CreateAnnouncement = () => {
 
     };
 
+    //render form to webpage
     return (
-
         <div className="announcement-page">
             <h2 className="announcement-header">Create Announcement</h2>
                 <div className="announcement-box">
